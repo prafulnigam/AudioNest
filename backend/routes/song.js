@@ -80,5 +80,16 @@ router.get("/get/allSongs", async (req, res) => {
     }
 });
 
+router.get('/get/song/:songId', async (req, res) => {
+    const songId = req.params.songId;
+    const song = await Song.findById(songId);
+  
+    if (!song) {
+      return res.status(404).json({ message: 'Song not found' });
+    }
+  
+    res.json(song);
+  });
+
 
 module.exports = router;

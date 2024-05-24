@@ -22,29 +22,49 @@ const Library = () => {
 
   const handlePlaylistClick = async (playlistId) => {
     try {
+      // Fetch playlist data
       const response = await makeAuthenticatedGETRequest(
         `/playlist/get/playlist/${playlistId}`
       );
-
-       console.log(response.songs);
-
+  
       if (!response.name) {
         console.error("Playlist data or songs not found in response:", response);
         return;
       }
 
-      console.log(response)
       const { songs } = response;
-      
-      setPopupContent(songs);
-
+  
+      // Fetch song names for each song objectId
+      const songNamesPromises = songs.map(async (songId) => {
+        try {
+          const songResponse = await makeAuthenticatedGETRequest(
+            `/song/get/song/${songId}`
+          );
+          return songResponse.name; // Assuming the response contains a 'name' field for the song
+        } catch (error) {
+          console.error(`Error fetching song with id ${songId}:`, error);
+          return null; // Return null if there's an error fetching the song
+        }
+      });
+  
+      // Wait for all song name fetch requests to complete
+      const songNames = await Promise.all(songNamesPromises);
+  
+      // Filter out any null values if any request failed
+      const validSongNames = songNames.filter((name) => name !== null);
+  
+      // Set the popup content with the song names
+      setPopupContent(validSongNames);
+  
+      // Clear the popup content after 5 seconds
       setTimeout(() => {
         setPopupContent(null);
-      }, 5000);
+      }, 7000);
     } catch (error) {
       console.error("Error fetching playlist:", error);
     }
   };
+  
 
   return (
     <LoggedInContainer curActiveScreen={"library"}>
