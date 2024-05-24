@@ -117,7 +117,7 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
   };
 
   return (
-    <div className="h-screen w-screen bg-app-black overflow-scroll">
+    <div className="h-screen w-screen bg-app-black">
       {createPlaylistModalOpen && (
         <CreatePlaylistModal
           closeModal={() => {
@@ -218,7 +218,17 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
               </div>
             </div>
           </div>
-          <div className="content p-8 pt-0">{children}</div>
+          <div
+            style={{
+              padding: "2rem",
+              paddingTop: "0",
+              maxHeight: "80vh",
+              overflowY: "auto",
+              boxSizing: "border-box",
+            }}
+          >
+            {children}
+          </div>
         </div>
       </div>
       {/* This div is the current playing song */}

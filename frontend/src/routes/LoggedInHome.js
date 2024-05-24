@@ -1,34 +1,32 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import SingleSongCard from "../components/shared/SingleSongCard";
-import {makeAuthenticatedGETRequest} from "../utils/serverHelpers";
+import { makeAuthenticatedGETRequest } from "../utils/serverHelpers";
 import LoggedInContainer from "../containers/LoggedInContainer";
 import HomeMusic from "../components/shared/HomeMusic";
 
 const MyMusic = () => {
-    const [songData, setSongData] = useState([]);
+  const [songData, setSongData] = useState([]);
 
-    useEffect(() => {
-        const getData = async () => {
-            const response = await makeAuthenticatedGETRequest(
-                "/song/get/allSongs"
-            );
-            setSongData(response.data);
-        };
-        getData();
-    }, []);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await makeAuthenticatedGETRequest("/song/get/allSongs");
+      setSongData(response.data);
+    };
+    getData();
+  }, []);
 
-    return (
-        <LoggedInContainer curActiveScreen="home">
-            <div className="text-white text-xl font-semibold pb-4 pl-2 pt-8">
-                Welcome to AudioNest
-            </div>
-            <div className="flex flex-wrap justify-start space-x-4">
-                {songData.map((item) => {
-                    return <HomeMusic info={item} playSound={() => {}} />;
-                })}
-            </div>
-        </LoggedInContainer>
-    );
+  return (
+    <LoggedInContainer curActiveScreen="home">
+      <div className="text-white text-xl font-semibold pb-4 pl-2 pt-8">
+        Welcome to AudioNest
+      </div>
+      <div className="flex flex-wrap justify-start gap-8">
+        {songData.map((item, index) => (
+          <HomeMusic key={index} info={item} playSound={() => {}} />
+        ))}
+      </div>
+    </LoggedInContainer>
+  );
 };
 
 export default MyMusic;

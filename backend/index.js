@@ -22,7 +22,7 @@ app.use(express.json());
 // connect mongodb to our node app.
 // mongoose.connect() takes 2 arguments : 1. Which db to connect to (db url), 2. 2. Connection options
 mongoose
-  .connect("mongodb+srv://prafulnigam16:prafulnigam16@cluster0.ynvbzdi.mongodb.net/spotifyNew", {
+  .connect("mongodb+srv://prafulnigam16:prafulnigam16@cluster0.shgyyvx.mongodb.net/AudioNest", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

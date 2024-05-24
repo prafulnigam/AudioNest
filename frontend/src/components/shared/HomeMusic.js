@@ -6,7 +6,7 @@ const HomeMusic = ({ info, playSound }) => {
 
   return (
     <div
-      className="bg-black bg-opacity-40 w-1/5 p-4 rounded-lg mb-4"
+      className="bg-black bg-opacity-40 w-1/6 p-4 rounded-lg mb-4"
       onClick={() => {
         setCurrentSong(info);
       }}

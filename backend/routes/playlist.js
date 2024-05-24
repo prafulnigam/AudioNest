@@ -37,18 +37,21 @@ router.post(
 // If you called /playlist/get/asdvniuen, the playlistId variable gets assigned teh value asdvniuen.
 router.get(
     "/get/playlist/:playlistId",
-    passport.authenticate("jwt", {session: false}),
+    passport.authenticate("jwt", { session: false }),
     async (req, res) => {
-        // This concept is called req.params
+      try {
         const playlistId = req.params.playlistId;
-        // I need to find a playlist with the _id = playlistId
-        const playlist = await Playlist.findOne({_id: playlistId});
+        const playlist = await Playlist.findOne({ _id: playlistId });
         if (!playlist) {
-            return res.status(301).json({err: "Invalid ID"});
+          return res.status(404).json({ err: "Invalid ID" });
         }
         return res.status(200).json(playlist);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ err: "Server error" });
+      }
     }
-);
+  );
 
 // Get all playlists made by me
 // /get/me
