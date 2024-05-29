@@ -1,4 +1,4 @@
-import {backendUrl} from "./config";
+import backendUrl from "./config";
 
 export const makeUnauthenticatedPOSTRequest = async (route, body) => {
     const response = await fetch(backendUrl + route, {
