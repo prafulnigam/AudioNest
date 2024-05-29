@@ -1,5 +1,10 @@
-import { useContext, useState, useLayoutEffect, useRef } from "react";
-import { Howl, Howler } from "howler";
+import {
+  useContext,
+  useState,
+  useLayoutEffect,
+  useRef,
+} from "react";
+import { Howl } from "howler";
 import { Icon } from "@iconify/react";
 import logo from "../assets/images/logo.png";
 import IconText from "../components/shared/IconText";
@@ -15,7 +20,6 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
 
   const {
     currentSong,
-    setCurrentSong,
     soundPlayed,
     setSoundPlayed,
     isPaused,
@@ -84,16 +88,14 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
       setIsPaused(true);
     }
   };
+
   const handleLinkClick = (url) => {
-    // Open the external link in a new tab
     window.location.replace(url);
   };
 
   const linkClick = (specialString) => {
-    // Copy special string to clipboard
     navigator.clipboard.writeText(specialString);
 
-    // Show overlay pop-up for 4 seconds
     const overlay = document.createElement("div");
     overlay.classList.add(
       "fixed",
@@ -196,7 +198,7 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
                   <TextWithHover displayText={"Contact Us"} />
                 </a>
                 <a
-                  onClick={() => linkClick("Special string to be copied")}
+                  onClick={() => linkClick("Here is the Deployement Link")}
                   className="text-white"
                 >
                   <TextWithHover displayText={"Share Us"} />
@@ -252,13 +254,8 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
             </div>
           </div>
           <div className="w-1/2 flex justify-center h-full flex-col items-center">
-            <div className="flex w-1/3 justify-between items-center">
+            <div className="flex  justify-between items-center">
               {/* controls for the playing song go here */}
-              <Icon
-                icon="mdi:skip-previous-outline"
-                fontSize={30}
-                className="cursor-pointer text-gray-500 hover:text-white"
-              />
               <Icon
                 icon={
                   isPaused
@@ -269,13 +266,7 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
                 className="cursor-pointer text-gray-500 hover:text-white"
                 onClick={togglePlayPause}
               />
-              <Icon
-                icon="mdi:skip-next-outline"
-                fontSize={30}
-                className="cursor-pointer text-gray-500 hover:text-white"
-              />
             </div>
-            {/* <div>Progress Bar Here</div> */}
           </div>
           <div className="w-1/4 flex justify-end pr-4 space-x-4 items-center">
             <Icon

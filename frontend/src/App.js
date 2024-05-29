@@ -3,7 +3,6 @@ import {useState} from "react";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import LoginComponent from "./routes/Login";
 import SignupComponent from "./routes/Signup";
-import HomeComponent from "./routes/Home";
 import LoggedInHomeComponent from "./routes/LoggedInHome";
 import UploadSong from "./routes/UploadSong";
 import MyMusic from "./routes/MyMusic";

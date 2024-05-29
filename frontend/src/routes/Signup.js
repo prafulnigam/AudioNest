@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {useCookies} from "react-cookie";
-import {Icon} from "@iconify/react";
 import TextInput from "../components/shared/TextInput";
 import PasswordInput from "../components/shared/PasswordInput";
 import {Link, useNavigate} from "react-router-dom";

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import LoggedInContainer from "../containers/LoggedInContainer";
 import { makeAuthenticatedGETRequest } from "../utils/serverHelpers";
 
 const Library = () => {
   const [myPlaylists, setMyPlaylists] = useState([]);
   const [popupContent, setPopupContent] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {

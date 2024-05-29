@@ -80,6 +80,7 @@ router.get("/get/allSongs", async (req, res) => {
     }
 });
 
+// This one is for playlist
 router.get('/get/song/:songId', async (req, res) => {
     const songId = req.params.songId;
     const song = await Song.findById(songId);

@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
     // xyz --> asghajskbvjacnijhabigbr
     // My hash of xyz depends on 2 parameters.
     // If I keep those 2 parameters same, xyz ALWAYS gives the same hash.
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10); // 10 salt rounds here
     const newUserData = {
         email,
         password: hashedPassword,
@@ -36,7 +36,7 @@ router.post("/register", async (req, res) => {
         username,
     };
     const newUser = await User.create(newUserData);
-    console.log(newUserData);
+    //console.log(newUserData);
 
     // Step 4: We want to create the token to return to the user
     const token = await getToken(email, newUser);
