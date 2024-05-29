@@ -1,5 +1,5 @@
 import {openUploadWidget} from "../../utils/CloudinaryService";
-import {cloudinary_upload_preset} from "../../config";
+const cloudinary_upload_preset = "spotify";
 
 const CloudinaryUpload = ({setUrl, setName}) => {
     const uploadImageWidget = () => {
