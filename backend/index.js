@@ -19,7 +19,7 @@ const port = 8080;
 
 app.use(cors(
     {
-      origin: ["https://audio-nest.vercel.app"],
+      origin: ["https://audio-nest-api.vercel.app"],
       methods: ["POST", "GET", "DELETE", "PUT"],
       credentials: true
     }
